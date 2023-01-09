@@ -36,6 +36,24 @@
             ➕ Add Photo
             <input type="file" accept="image/*" id="file" />
         </label>
+        <select id="font">
+            <option value="Arial">Arial</option>
+            <option value="Arial Black">Arial Black</option>
+            <option value="Bookman Old Style">Bookman Old Style</option>
+            <option value="Impact">Impact</option>
+            <option value="Lucida Console">Lucida Console</option>
+            <option value="고딕">고딕</option>
+            <option value="굴림">굴림</option>
+            <option value="궁서">궁서</option>
+            <option value="돋움">돋움</option>
+            <option value="바탕">바탕</option>
+        </select>
+        <select id="font-size"></select>
+        <ul id="font-style">
+            <li class="style-item" data-font-style="normal">N</li>
+            <li class="style-item" data-font-style="bold" style="font-weight: bold;">B</li>
+            <li class="style-item" data-font-style="italic" style="font-style: italic;">I</li>
+        </ul>
         <input type="text" placeholder="Type & Double click" id="text">
         <button id="save">🖼 Save image</button>
     </div>

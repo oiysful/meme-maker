@@ -1,3 +1,6 @@
+const fontStyles = Array.from(document.getElementsByClassName("style-item"));
+const fontSize = document.getElementById("font-size");
+const fontSelect = document.getElementById("font");
 const saveBtn = document.getElementById("save");
 const textInput = document.getElementById("text");
 const fileInput = document.getElementById("file");
@@ -20,6 +23,20 @@ ctx.lineCap = "round";
 
 let isPainting = false;
 let isFilling = false;
+
+let selectedFontStyle = "normal";
+
+for (let i = 0; i < 18; i++) {
+    const sizeOption = document.createElement("option");
+    const size = `${12 + (i * 4)}`;
+    const sizeVal = `${size}px`;
+    sizeOption.value = sizeVal;
+    sizeOption.innerText = sizeVal;
+    if(size == 48) {
+        sizeOption.selected = true;
+    }
+    fontSize.appendChild(sizeOption);
+}
 
 function onMove(event) {
     if (isPainting) {
@@ -95,10 +112,13 @@ function onFileChange(event) {
 
 function onDoubleClick(event) {
     const text = textInput.value;
+    const font = fontSelect.value;
+    const size = fontSize.value;
+    const style = selectedFontStyle;
     if (text !== "") {
         ctx.save();
         ctx.lineWidth = 1;
-        ctx.font = "68px sans-serif";
+        ctx.font = `${style} ${size} ${font}`;
         ctx.fillText(text, event.offsetX, event.offsetY);
         ctx.restore();
     }
@@ -110,6 +130,10 @@ function onSaveClick() {
     a.href = url;
     a.download = "myDrawing.png";
     a.click();
+}
+
+function onStyleClick(event) {
+    selectedFontStyle = event.target.dataset.fontStyle;
 }
 
 canvas.addEventListener("dblclick", onDoubleClick);
@@ -129,3 +153,5 @@ destroyBtn.addEventListener("click", onDestroyClick);
 eraseBtn.addEventListener("click", onEraserClick);
 fileInput.addEventListener("change", onFileChange);
 saveBtn.addEventListener("click", onSaveClick);
+
+fontStyles.forEach(style => style.addEventListener("click", onStyleClick));
