@@ -28,7 +28,7 @@
     <canvas></canvas>
 
     <div class="btns">
-        <input type="range" id="line-width" min="1" max="19" value="10" step="1" />
+        <input type="range" id="line-width" min="1" max="19" value="10" step=".1" />
         <button id="mode-btn">💧 Fill</button>
         <button id="destroy-btn">♻ Clear</button>
         <button id="eraser-btn">❌ Erase</button>
@@ -36,24 +36,27 @@
             ➕ Add Photo
             <input type="file" accept="image/*" id="file" />
         </label>
-        <select id="font">
-            <option value="Arial">Arial</option>
-            <option value="Arial Black">Arial Black</option>
-            <option value="Bookman Old Style">Bookman Old Style</option>
-            <option value="Impact">Impact</option>
-            <option value="Lucida Console">Lucida Console</option>
-            <option value="고딕">고딕</option>
-            <option value="굴림">굴림</option>
-            <option value="궁서">궁서</option>
-            <option value="돋움">돋움</option>
-            <option value="바탕">바탕</option>
-        </select>
-        <select id="font-size"></select>
-        <ul id="font-style">
-            <li class="style-item" data-font-style="normal">N</li>
-            <li class="style-item" data-font-style="bold" style="font-weight: bold;">B</li>
-            <li class="style-item" data-font-style="italic" style="font-style: italic;">I</li>
-        </ul>
+        <div id="font">
+            <div id="font-style">
+                <select id="font-family">
+                    <option value="Arial">Arial</option>
+                    <option value="Arial Black">Arial Black</option>
+                    <option value="Impact">Impact</option>
+                    <option value="고딕">고딕</option>
+                    <option value="굴림">굴림</option>
+                    <option value="궁서">궁서</option>
+                    <option value="돋움">돋움</option>
+                    <option value="바탕">바탕</option>
+                </select>
+                <select id="font-size"></select>
+            </div>
+            <ul id="font-weight">
+                <li class="weight-item" data-font-weight="normal">N</li>
+                <li class="weight-item" data-font-weight="bold" style="font-weight: bold; border-left: 1px solid #004d00; border-right: 1px solid #004d00;">B</li>
+                <li class="weight-item" data-font-weight="italic" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: italic;">I</li>
+            </ul>
+        </div>
+
         <input type="text" placeholder="Type & Double click" id="text">
         <button id="save">🖼 Save image</button>
     </div>

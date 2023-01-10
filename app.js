@@ -1,6 +1,6 @@
-const fontStyles = Array.from(document.getElementsByClassName("style-item"));
+const fontStyle = Array.from(document.getElementsByClassName("weight-item"));
 const fontSize = document.getElementById("font-size");
-const fontSelect = document.getElementById("font");
+const fontFamily = document.getElementById("font-family");
 const saveBtn = document.getElementById("save");
 const textInput = document.getElementById("text");
 const fileInput = document.getElementById("file");
@@ -26,10 +26,10 @@ let isFilling = false;
 
 let selectedFontStyle = "normal";
 
-for (let i = 0; i < 18; i++) {
+for (let i = 0; i < 12; i++) {
     const sizeOption = document.createElement("option");
-    const size = `${12 + (i * 4)}`;
-    const sizeVal = `${size}px`;
+    const size = `${12 + (i * 6)}`;
+    const sizeVal = `${size}pt`;
     sizeOption.value = sizeVal;
     sizeOption.innerText = sizeVal;
     if(size == 48) {
@@ -112,7 +112,7 @@ function onFileChange(event) {
 
 function onDoubleClick(event) {
     const text = textInput.value;
-    const font = fontSelect.value;
+    const font = fontFamily.value;
     const size = fontSize.value;
     const style = selectedFontStyle;
     if (text !== "") {
@@ -132,8 +132,21 @@ function onSaveClick() {
     a.click();
 }
 
-function onStyleClick(event) {
-    selectedFontStyle = event.target.dataset.fontStyle;
+function onFontChange(event) {
+    const font = event.target.value;
+    textInput.style.fontFamily = font;
+}
+
+function onFontStyleChange(event) {
+    const fontWeight = event.target.dataset.fontWeight;
+    selectedFontStyle = fontWeight;
+    if(fontWeight == "normal" || fontWeight == "bold") {
+        textInput.style.fontStyle = null;
+        textInput.style.fontWeight = fontWeight;
+    } else {
+        textInput.style.fontStyle = fontWeight;
+        textInput.style.fontWeight = null;
+    }
 }
 
 canvas.addEventListener("dblclick", onDoubleClick);
@@ -154,4 +167,6 @@ eraseBtn.addEventListener("click", onEraserClick);
 fileInput.addEventListener("change", onFileChange);
 saveBtn.addEventListener("click", onSaveClick);
 
-fontStyles.forEach(style => style.addEventListener("click", onStyleClick));
+fontFamily.addEventListener("change", onFontChange);
+
+fontStyle.forEach(style => style.addEventListener("click", onFontStyleChange));

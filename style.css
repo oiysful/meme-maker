@@ -56,7 +56,7 @@ input#color::-webkit-color-swatch {
     margin: 0 5%;
     border: 5px solid white;
     border-radius: 50%;
-    transition: transform ease-in-out .15s;
+    transition: transform ease-in-out .15s, background-color ease-in-out .25s;
 }
 
 input#color::-webkit-color-swatch:hover {
@@ -81,9 +81,24 @@ canvas {
     flex: 1;
 }
 
-input#line-width {
+input[type='range'] {
+    -webkit-appearance: none;
     width: 180px;
-    height: 20px;
+    height: 40px;
+    background-color: #39796b;
+    border-radius: 10px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 10px;
+    height: 40px;
+    background: #b2dfdb;
+    border-radius: 10px;
+    box-shadow: -100px 0 0 95px #b2dfdb;
+    border: 0.1px solid #b2dfdb;
 }
 
 button,
@@ -98,15 +113,87 @@ label {
     font-weight: 500;
     cursor: pointer;
     border-radius: 10px;
-    transition: opacity linear .15s;
-    transition: transform ease-in-out .15s;
+    transition: background-color linear .15s;
 }
 
 button:hover,
 label:hover {
-    opacity: 0.8;
-    transform: scale(1.03);
-    font-weight: 700;
+    background-color: #b2dfdb;
+}
+
+div#font {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 180px;
+    height: 60px;
+    color: white;
+    text-align: center;
+}
+
+div#font-style {
+    flex: 1 1 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    align-self: stretch;
+    background-color: #39796b;
+    border-bottom: 1.5px dashed #004d40;
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+    font-size: small;
+}
+
+select#font-family {
+    all: unset;
+    flex: 2 1 0;
+    border-right: 1px solid #004d40;
+}
+
+select#font-size {
+    all: unset;
+    flex: 1.2 1 0;
+}
+
+select#font-family, select#font-size {
+    transition: font-weight ease-in-out .15s;
+}
+
+select#font-family:hover,
+select#font-size:hover {
+    font-weight: bold;
+}
+
+select option {
+    background-color: #39796b;
+    font-size: small;
+}
+
+ul#font-weight {
+    flex: 1 1 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    align-self: stretch;
+    background-color: #39796b;
+    border-radius: 0 0 10px 10px;
+    cursor: pointer;
+}
+
+li.weight-item {
+    flex: 1 1 0;
+    align-self: stretch;
+    margin: auto 0;
+    font-size: small;
+    transition: font ease-in-out .1s;
+}
+
+li.weight-item:hover {
+    font-size: larger;
+    font-weight: bolder;
 }
 
 input#text {
@@ -115,7 +202,7 @@ input#text {
     height: 20px;
     padding: 10px 0;
     text-align: center;
-    background-color: white;
+    background-color: #b2dfdb;
     font-weight: 500;
     border-radius: 10px;
 }
